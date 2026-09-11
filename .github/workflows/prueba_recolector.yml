@@ -1,0 +1,26 @@
+name: Prueba recolector cloud
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Ejecutar prueba de exchanges
+        run: |
+          python recolector_cloud.py
